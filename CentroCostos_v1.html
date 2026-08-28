@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Centro de Costos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#F5F0E6;
+  --green:#1B3A2B;
+  --green-soft:rgba(27,58,43,.08);
+  --ink:#161513;
+  --card:#FDFBF6;
+  --radius:26px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{
+  font-family:'Poppins',sans-serif;
+  background:var(--cream);
+  color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1040px;margin:0 auto;padding:56px 24px 96px}
+
+/* ---------- Header ---------- */
+header{text-align:center;margin-bottom:64px}
+.eyebrow{
+  display:inline-block;
+  font-size:.72rem;font-weight:600;letter-spacing:.32em;text-transform:uppercase;
+  color:var(--green);background:var(--green-soft);
+  padding:8px 18px;border-radius:999px;margin-bottom:20px;
+}
+h1{
+  font-size:clamp(2.2rem,6vw,3.4rem);
+  font-weight:700;color:var(--green);
+  letter-spacing:-.02em;
+}
+header p{margin-top:14px;color:#5c5850;font-weight:300;font-size:1rem;max-width:46ch;margin-inline:auto}
+
+/* ---------- Views & transitions ---------- */
+.view{transition:opacity .35s ease, transform .35s ease}
+.view.leaving{opacity:0;transform:translateY(12px)}
+.view.hidden{display:none}
+.view.entering{opacity:0;transform:translateY(12px)}
+
+/* ---------- Section subtitle ---------- */
+.subtitle{
+  text-align:center;
+  font-size:.85rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--ink);margin-bottom:36px;
+  display:flex;align-items:center;gap:20px;
+}
+.subtitle::before,.subtitle::after{
+  content:"";flex:1;height:1px;background:rgba(22,21,19,.15);
+}
+
+/* ---------- Image cards ---------- */
+.cards-2{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+@media(max-width:720px){.cards-2{grid-template-columns:1fr}}
+
+.card-img{
+  cursor:pointer;
+  background:var(--card);
+  border-radius:var(--radius);
+  overflow:hidden;
+  box-shadow:0 10px 30px rgba(27,58,43,.08);
+  transition:transform .3s ease, box-shadow .3s ease;
+  border:1px solid rgba(27,58,43,.06);
+}
+.card-img:hover{transform:translateY(-6px);box-shadow:0 22px 44px rgba(27,58,43,.16)}
+.card-img:focus-visible{outline:3px solid var(--green);outline-offset:3px}
+.card-img .ph{aspect-ratio:4/3;background:#d8d2c4;overflow:hidden}
+.card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+.card-img:hover img{transform:scale(1.04)}
+.card-img .label{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:20px 24px;
+}
+.card-img .label h3{font-size:1.15rem;font-weight:600;color:var(--green)}
+.card-img .arrow{
+  width:38px;height:38px;border-radius:50%;
+  background:var(--green-soft);color:var(--green);
+  display:grid;place-items:center;font-size:1.05rem;
+  transition:background .3s ease,color .3s ease,transform .3s ease;
+}
+.card-img:hover .arrow{background:var(--green);color:var(--cream);transform:translateX(3px)}
+
+/* ---------- Text cards ---------- */
+.cards-txt{display:flex;flex-wrap:wrap;justify-content:center;gap:24px}
+.card-txt{
+  cursor:pointer;
+  min-width:220px;
+  background:var(--card);
+  border:1px solid rgba(27,58,43,.08);
+  border-radius:var(--radius);
+  padding:40px 44px;
+  text-align:center;
+  box-shadow:0 8px 24px rgba(27,58,43,.06);
+  transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+}
+.card-txt:hover{
+  transform:translateY(-5px);
+  box-shadow:0 18px 38px rgba(27,58,43,.14);
+  border-color:var(--green);
+}
+.card-txt h3{font-size:1.2rem;font-weight:600;color:var(--green)}
+.card-txt span{
+  display:inline-block;margin-top:10px;
+  font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:#8a857a;font-weight:500;
+}
+.card-txt:focus-visible{outline:3px solid var(--green);outline-offset:3px}
+
+/* ---------- Back button ---------- */
+.back{
+  display:inline-flex;align-items:center;gap:10px;
+  background:transparent;color:var(--green);
+  border:1.5px solid rgba(27,58,43,.3);
+  border-radius:999px;
+  padding:10px 22px 10px 16px;
+  font-family:inherit;font-size:.9rem;font-weight:500;
+  cursor:pointer;margin-bottom:40px;
+  transition:background .3s ease,color .3s ease,border-color .3s ease;
+}
+.back:hover{background:var(--green);color:var(--cream);border-color:var(--green)}
+.back:focus-visible{outline:3px solid var(--green);outline-offset:3px}
+
+.subhead{text-align:center;margin-bottom:40px}
+.subhead h2{font-size:1.6rem;font-weight:600;color:var(--green);letter-spacing:-.01em}
+.subhead p{margin-top:8px;color:#6b665c;font-weight:300;font-size:.95rem}
+
+/* ---------- Toast ---------- */
+#toast{
+  position:fixed;left:50%;bottom:32px;transform:translate(-50%,20px);
+  background:var(--green);color:var(--cream);
+  padding:13px 26px;border-radius:999px;
+  font-size:.9rem;font-weight:500;
+  opacity:0;pointer-events:none;
+  transition:opacity .3s ease,transform .3s ease;
+  box-shadow:0 12px 28px rgba(27,58,43,.3);
+  z-index:50;
+}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+
+footer{margin-top:96px;text-align:center;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:#a09a8c;font-weight:500}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <span class="eyebrow">Gestión corporativa</span>
+    <h1>Centro de Costos</h1>
+    <p>Selecciona una línea de producto para explorar sus categorías y centros de costo asociados.</p>
+  </header>
+
+  <!-- VISTA: PRODUCTOS -->
+  <section id="view-productos" class="view" aria-label="Productos">
+    <div class="subtitle">Productos</div>
+    <div class="cards-2">
+      <div class="card-img" role="button" tabindex="0" data-go="confecciones" aria-label="Ver Confecciones">
+        <div class="ph">
+          <img src="https://loremflickr.com/800/600/workwear,jacket?lock=11"
+               onerror="this.onerror=null;this.src='https://picsum.photos/seed/confecciones/800/600'"
+               alt="Casaca acolchada térmica marrón de seguridad con cinta reflectiva">
+        </div>
+        <div class="label"><h3>Confecciones</h3><span class="arrow">→</span></div>
+      </div>
+      <div class="card-img" role="button" tabindex="0" data-go="calzado" aria-label="Ver Calzado">
+        <div class="ph">
+          <img src="https://loremflickr.com/800/600/safety,boots?lock=7"
+               onerror="this.onerror=null;this.src='https://picsum.photos/seed/calzado/800/600'"
+               alt="Bota de seguridad minera marrón claro con planta de caucho">
+        </div>
+        <div class="label"><h3>Calzado</h3><span class="arrow">→</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISTA: CONFECCIONES -->
+  <section id="view-confecciones" class="view hidden" aria-label="Confecciones">
+    <button class="back" data-go="productos">← Volver a Productos</button>
+    <div class="subhead">
+      <h2>Confecciones</h2>
+      <p>Selecciona una categoría para continuar.</p>
+    </div>
+    <div class="cards-txt">
+      <div class="card-txt" role="button" tabindex="0" data-pick="Prosegur">
+        <h3>Prosegur</h3><span>Categoría</span>
+      </div>
+      <div class="card-txt" role="button" tabindex="0" data-pick="Otros">
+        <h3>Otros</h3><span>Categoría</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISTA: CALZADO -->
+  <section id="view-calzado" class="view hidden" aria-label="Calzado">
+    <button class="back" data-go="productos">← Volver a Productos</button>
+    <div class="subhead">
+      <h2>Calzado</h2>
+      <p>Selecciona una categoría para continuar.</p>
+    </div>
+    <div class="cards-txt">
+      <div class="card-txt" role="button" tabindex="0" data-pick="Good Year">
+        <h3>Good Year</h3><span>Categoría</span>
+      </div>
+      <div class="card-txt" role="button" tabindex="0" data-pick="Vulcanizado">
+        <h3>Vulcanizado</h3><span>Categoría</span>
+      </div>
+      <div class="card-txt" role="button" tabindex="0" data-pick="Poliuretano">
+        <h3>Poliuretano</h3><span>Categoría</span>
+      </div>
+    </div>
+  </section>
+
+  <footer>Centro de Costos · Línea de seguridad industrial</footer>
+</div>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+const views = {
+  productos: document.getElementById('view-productos'),
+  confecciones: document.getElementById('view-confecciones'),
+  calzado: document.getElementById('view-calzado')
+};
+const toast = document.getElementById('toast');
+let toastTimer;
+
+function showToast(msg){
+  toast.textContent = msg;
+  toast.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>toast.classList.remove('show'), 2200);
+}
+
+function navigate(target){
+  const current = Object.values(views).find(v => !v.classList.contains('hidden'));
+  if(current === views[target]) return;
+  current.classList.add('leaving');
+  setTimeout(()=>{
+    current.classList.remove('leaving');
+    current.classList.add('hidden');
+    const next = views[target];
+    next.classList.remove('hidden');
+    next.classList.add('entering');
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{
+      next.classList.remove('entering');
+    }));
+    window.scrollTo({top:0, behavior:'smooth'});
+  }, 320);
+}
+
+document.addEventListener('click', e=>{
+  const nav = e.target.closest('[data-go]');
+  if(nav) navigate(nav.dataset.go);
+
+  const pick = e.target.closest('[data-pick]');
+  if(pick) showToast('«' + pick.dataset.pick + '» seleccionado — destino próximamente');
+});
+
+document.addEventListener('keydown', e=>{
+  if(e.key === 'Enter' || e.key === ' '){
+    const el = document.activeElement;
+    if(el && (el.hasAttribute('data-go') || el.hasAttribute('data-pick'))){
+      e.preventDefault();
+      el.click();
+    }
+  }
+});
+</script>
+</body>
+</html>

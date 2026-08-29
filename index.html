@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Centro de Costos</title>
-<link rel="preconnect href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -42,7 +42,7 @@ h1{
   font-weight:700;color:var(--green);
   letter-spacing:-.02em;
 }
-header p{margin-top:14px;color:#5c5850;font-weight:300;font-size:1;max-width:46ch;margin-inline:auto}
+header{margin-top:14px;color:#5c5850;font-weight:300;font-size:1rem;max-width:46ch;margin-inline:auto}
 
 /* ---------- Views & transitions ---------- */
 .view{transition:opacity .35s ease, transform .35s ease}
@@ -98,19 +98,19 @@ header p{margin-top:14px;color:#5c5850;font-weight:300;font-size:1;max-width:46c
   cursor:pointer;
   min-width:220px;
   background:var(--card);
-  border1px solid rgba(27,58,43,.08);
-  border-radius:(--radius);
+  border:1px solid rgba(27,58,43,.08);
+  border-radius:var(--radius);
   padding:40px 44px;
   text-align:center;
-  box-shadow:0 8px 24px(27,58,43,.06);
+  box-shadow:0 8px 24px rgba(27,58,43,.06);
   transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease;
 }
 .card-txt:hover{
   transform:translateY(-5px);
   box-shadow:0 18px 38px rgba(27,58,43,.14);
-  border-color:vargreen);
+  border-color:var(--green);
 }
-.card-txt h3font-size:1.2rem;font-weight:600;color:var(--green)}
+.card-txt h3{font-size:1.2rem;font-weight:600;color:var(--green)}
 .card-txt span{
   display:inline-block;margin-top:10px;
   font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:#8a857a;font-weight:500;
@@ -199,14 +199,14 @@ header p{margin-top:14px;color:#5c5850;font-weight:300;font-size:1;max-width:46c
 }
 #toast.show{opacity:1;transform:translate(-50%,0)}
 
-footer{margin-top:96px;text-align:center;font:.78rem;letter-spacing:.2em;text-transform:uppercase;color:#a09a8c;font-weight:500}
+footer{margin-top:96px;text-align:center;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:#a09a8c;font-weight:500}
 </style>
 </head>
 <body>
 
 <div class="wrap">
- <header>
-    <img class="logo" src="images/Logo_Boticentro.png" alt="Logo Boticentro">
+  <header>
+    <img class="logo" src="images/Logo-Boticentro.png" alt="Logo Boticentro">
     <span class="eyebrow">Gestión corporativa</span>
     <h1>Centro de Costos</h1>
     <p>Selecciona una línea de producto para explorar sus categorías y centros de costo asociados.</p>
@@ -218,13 +218,13 @@ footer{margin-top:96px;text-align:center;font:.78rem;letter-spacing:.2em;text-tr
     <div class="cards-2">
       <div class="card-img" role="button" tabindex="0" data-go="confecciones" aria-label="Ver catálogo de Confecciones">
         <div class="ph">
-          <img src="images/Portada confecciones.png" alt="Portada Confecciones — uniformes industriales">
+          <img src="images/Portada-confecciones.png" alt="Portada Confecciones — uniformes industriales">
         </div>
         <div class="label"><h3>Confecciones</h3><span class="arrow">→</span></div>
       </div>
       <div class="card-img" role="button" tabindex="0" data-go="calzado" aria-label="Ver Calzado">
         <div class="ph">
-          <img src="images/Portada calzado.jpeg" alt="Portada Calzado — botas de seguridad">
+          <img src="images/Portada-calzado.jpeg" alt="Portada Calzado — botas de seguridad">
         </div>
         <div class="label"><h3>Calzado</h3><span class="arrow">→</span></div>
       </div>
@@ -241,27 +241,27 @@ footer{margin-top:96px;text-align:center;font:.78rem;letter-spacing:.2em;text-tr
     <div class="grid-productos" id="grid-confecciones">
       <div class="prod-card" role="button" tabindex="0"
            data-product="CASACA TASLAN AZUL MARINO CLÁSICA F/POLAR">
-        <div class="ph"><img src="images/Casaca azul prosegur.jpeg" alt="Casaca Taslan Azul Marino"></div>
+        <div class="ph"><img src="images/Casaca-azul-prosegur.jpeg" alt="Casaca Taslan Azul Marino"></div>
         <h4>Casaca Taslan Azul Marino Clásica F/Polar</h4>
       </div>
       <div class="prod-card" role="button" tabindex="0"
            data-product="CASACA CASIMIR NEGRO MOTORIZADO C/RIBETE AMARILLO">
-        <div class="ph"><img src="images/Casaca negra taslan prosegur.jpeg" alt="Casaca Casimir Negro Motorizado"></div>
+        <div class="ph"><img src="images/Casaca-negra-taslan-prosegur.jpeg" alt="Casaca Casimir Negro Motorizado"></div>
         <h4>Casaca Casimir Negro Motorizado C/Ribete Amarillo</h4>
       </div>
       <div class="prod-card" role="button" tabindex="0"
            data-product="CHALECO NARANJA C/CINTA REFLECTIVA">
-        <div class="ph"><img src="images/Chaleco naranja Prosegur.jpeg" alt="Chaleco Naranja con cinta reflectiva"></div>
+        <div class="ph"><img src="images/Chaleco-naranja-prosegur.jpeg" alt="Chaleco Naranja con cinta reflectiva"></div>
         <h4>Chaleco Naranja C/Cinta Reflectiva</h4>
       </div>
       <div class="prod-card" role="button" tabindex="0"
            data-product="CHALECO VERDE C/CINTA REFLECTIVA">
-        <div class="ph"><img src="images/Chaleco verde.jpeg" alt="Chaleco Verde con cinta reflectiva"></div>
+        <div class="ph"><img src="images/Chaleco-verde.jpeg" alt="Chaleco Verde con cinta reflectiva"></div>
         <h4>Chaleco Verde C/Cinta Reflectiva</h4>
       </div>
       <div class="prod-card" role="button" tabindex="0"
            data-product="CHOMPA CUELLO V MARRON">
-        <div class="ph"><img src="images/Chompa marrón cuello V.jpeg" alt="Chompa Marrón cuello V"></div>
+        <div class="ph"><img src="images/Chompa-marron-cuelloV.jpeg" alt="Chompa Marrón cuello V"></div>
         <h4>Chompa Cuello V Marrón</h4>
       </div>
     </div>

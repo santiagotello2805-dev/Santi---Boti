@@ -26,10 +26,16 @@ body{
 .wrap{max-width:1080px;margin:0 auto;padding:48px 24px 96px}
 
 /* ---------- Header ---------- */
-header{text-align:center;margin-bottom:56px;position:relative}
+header{
+  position:relative;
+  text-align:center;
+  margin-bottom:56px;
+}
 .logo{
-  width:120px;height:auto;
-  position:absolute;top:0;left:0;
+  position:absolute;
+  top:-6px;
+  left:0;
+  width:96px;height:auto;
 }
 .eyebrow{
   display:inline-block;
@@ -38,12 +44,12 @@ header{text-align:center;margin-bottom:56px;position:relative}
   padding:8px 18px;border-radius:999px;margin-bottom:20px;
 }
 h1{
-  font-size:clamp(2.2rem,6vw,3.4rem);
+  font-size:clamp(1.1rem, 4.6vw, 3.4rem);
   font-weight:700;color:var(--green);
   letter-spacing:-.02em;
   white-space:nowrap;
 }
-header{margin-top:14px;color:#5c5850;font-weight:300;font-size:1rem;max-width:46ch;margin-inline:auto}
+header p{margin-top:14px;color:#5c5850;font-weight:300;font-size:1rem;max-width:46ch;margin-inline:auto}
 
 /* ---------- Views & transitions ---------- */
 .view{transition:opacity .35s ease, transform .35s ease}
@@ -56,7 +62,7 @@ header{margin-top:14px;color:#5c5850;font-weight:300;font-size:1rem;max-width:46
   text-align:center;
   font-size:.85rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;
   color:var(--ink);margin-bottom:36px;
-  display:flex;align-items:center;gap:20px;
+  display;align-items:center;gap:20px;
 }
 .subtitle::before,.subtitle::after{
   content:"";flex:1;height:1px;background:rgba(22,21,19,.15);
@@ -169,6 +175,63 @@ header{margin-top:14px;color:#5c5850;font-weight:300;font-size:1rem;max-width:46
 .placeholder-box h3{font-size:1.1rem;font-weight:600;color:var(--green);margin-bottom:10px}
 .placeholder-box p{color:#6b665c;font-weight:300;font-size:.95rem}
 
+/* Tabla de estructura de costos */
+.table-wrap{
+  max-width:760px;margin:0 auto;
+  background:var(--card);
+  border:1px solid rgba(27,58,43,.08);
+  border-radius:var(--radius);
+  box-shadow:0 10px 30px rgba(27,58,43,.08);
+  overflow:hidden;
+}
+.table-scroll{overflow-x:auto}
+table.costos{
+  width:100%;
+  border-collapse:collapse;
+  font-size:.85rem;
+  min-width:560px;
+}
+table.costos thead th{
+  background:var(--green);
+  color:var(--cream);
+  font-weight:600;
+  text-align:left;
+  padding:14px 18px;
+  font-size:.72rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+table.costos tbody td{
+  padding:13px 18px;
+  border-bottom:1px solid rgba(27,58,43,.07);
+  color:var(--ink);
+}
+table.costos tbody tr:last-child td{border-bottom:none}
+table.costos tbody tr:nth-child(even){background:rgba(27,58,43,.03)}
+table.costos td.costo{font-weight:600;color:var(--green);white-space:nowrap}
+table.costos td.tipo{
+  font-size:.7rem;font-weight:600;letter-spacing:.08em;
+  color:#8a857a;text-transform:uppercase;white-space:nowrap;
+}
+
+/* Totales */
+.totales{
+  padding:0 18px 20px;
+  display:flex;flex-direction:column;gap:10px;
+}
+.total-row{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 20px;
+  border-radius:16px;
+  font-size:.9rem;
+}
+.total-row .lbl{font-weight:500;color:var(--ink)}
+.total-row .val{font-weight:700;color:var(--green);white-space:nowrap}
+.total-row.costo-prod{background:rgba(27,58,43,.1)}
+.total-row.venta .val{color:#B3261E}
+.total-row.utilidad{background:rgba(255,214,0,.22)}
+.total-row.utilidad .val{color:var(--ink)}
+
 /* ---------- Back button ---------- */
 .back{
   display:inline-flex;align-items:center;gap:10px;
@@ -208,9 +271,9 @@ footer{margin-top:96px;text-align:center;font-size:.78rem;letter-spacing:.2em;te
 <div class="wrap">
   <header>
     <img class="logo" src="Logo-Boticentro.png" alt="Logo Boticentro">
-     <span class="eyebrow">Gestión corporativa</span>
-     <h1>Centro de Costos</h1>
-     <p>Selecciona una línea de producto para explorar sus categorías y centros de costo asociados.</p>
+    <span class="eyebrow">Gestión corporativa</span>
+    <h1>Centro de Costos</h1>
+    <p>Selecciona una línea de producto para explorar sus categorías y centros de costo asociados.</p>
   </header>
 
   <!-- VISTA: PRODUCTOS -->
@@ -225,7 +288,7 @@ footer{margin-top:96px;text-align:center;font-size:.78rem;letter-spacing:.2em;te
       </div>
       <div class="card-img" role="button" tabindex="0" data-go="calzado" aria-label="Ver Calzado">
         <div class="ph">
-          <img src="Portada-calzado.png" alt="Portada Calzado — botas de seguridad">
+          <img src="Portada-calzado.jpeg" alt="Portada Calzado — botas de seguridad">
         </div>
         <div class="label"><h3>Calzado</h3><span class="arrow">→</span></div>
       </div>
@@ -268,17 +331,37 @@ footer{margin-top:96px;text-align:center;font-size:.78rem;letter-spacing:.2em;te
     </div>
   </section>
 
-  <!-- VISTA: DETALLE DE COSTOS (placeholder) -->
+  <!-- VISTA: DETALLE DE COSTOS (dinámica) -->
   <section id="view-detalle" class="view hidden" aria-label="Estructura de costos">
     <button class="back" data-go="confecciones">← Volver al catálogo</button>
     <div class="subhead">
       <h2 id="detalle-title">Estructura de costos</h2>
       <p id="detalle-product"></p>
     </div>
-    <div class="placeholder-box">
+
+    <!-- Placeholder (productos sin datos aún) -->
+    <div class="placeholder-box" id="detalle-placeholder">
       <div class="icon">✎</div>
       <h3>Próximamente: estructura de costos</h3>
       <p>El detalle de costos de este producto estará disponible aquí.</p>
+    </div>
+
+    <!-- Tabla de estructura de costos -->
+    <div class="table-wrap" id="detalle-table" hidden>
+      <div class="table-scroll">
+        <table class="costos">
+          <thead>
+            <tr>
+              <th>Área</th>
+              <th>Tipo</th>
+              <th>Concepto</th>
+              <th>Costo Prenda (s/IGV)</th>
+            </tr>
+          </thead>
+          <tbody id="costos-body"></tbody>
+        </table>
+      </div>
+      <div class="totales" id="costos-totales"></div>
     </div>
   </section>
 
@@ -317,7 +400,36 @@ const views = {
 const toast = document.getElementById('toast');
 const detalleTitle = document.getElementById('detalle-title');
 const detalleProduct = document.getElementById('detalle-product');
+const detallePlaceholder = document.getElementById('detalle-placeholder');
+const detalleTable = document.getElementById('detalle-table');
+const costosBody = document.getElementById('costos-body');
+const costosTotales = document.getElementById('costos-totales');
 let toastTimer;
+
+/* ---------- Datos de estructura de costos ---------- */
+const costData = {
+  "CHALECO NARANJA C/CINTA REFLECTIVA": {
+    filas: [
+      { area:"Corte",   tipo:"MD",  concepto:"Drill, cinta reflectiva, cierres",       costo:"S/ 16.17" },
+      { area:"Corte",   tipo:"MOD", concepto:"Confeccionado",                          costo:"S/ 0.45"  },
+      { area:"Bordado", tipo:"MD",  concepto:"Materiales de bordado",                  costo:"S/ 0.15"  },
+      { area:"Bordado", tipo:"MOD", concepto:"Maquila y cinta",                        costo:"S/ 1.32"  },
+      { area:"Costura", tipo:"MD",  concepto:"Ribete",                                 costo:"S/ 1.12"  },
+      { area:"Costura", tipo:"MOD", concepto:"Maquilado (costura, cinta, flete)",      costo:"S/ 6.68"  },
+      { area:"Acabado", tipo:"MD",  concepto:"Bolsa",                                  costo:"S/ 0.14"  },
+      { area:"Acabado", tipo:"MOD", concepto:"Costo del acabado",                      costo:"S/ 0.50"  },
+      { area:"—",       tipo:"CIF", concepto:"Mat. Indirectos",                        costo:"S/ 0.30"  },
+      { area:"—",       tipo:"CIF", concepto:"MOI",                                    costo:"S/ 0.25"  },
+      { area:"—",       tipo:"CIF", concepto:"Luz y depreciación",                     costo:"S/ 0.24"  }
+    ],
+    totales: [
+      { clase:"costo-prod", lbl:"Costo del Producto S/IGV", val:"S/ 27.31" },
+      { clase:"venta",      lbl:"Precio de Venta S/IGV",    val:"S/ 36.50" },
+      { clase:"",           lbl:"IGV (Venta − Costo)",      val:"S/ 3.41"  },
+      { clase:"utilidad",   lbl:"Utilidad",                 val:"S/ 9.19 (25.2%)" }
+    ]
+  }
+};
 
 function showToast(msg){
   toast.textContent = msg;
@@ -343,8 +455,29 @@ function navigate(target){
   }, 320);
 }
 
-function openDetalle(product){
-  detalleTitle.textContent = 'Estructura de costos';
+function renderDetalle(product){
+  const data = costData[product];
+  if(data){
+    // Cargar filas
+    costosBody.innerHTML = data.filas.map(f => `
+      <tr>
+        <td>${f.area}</td>
+        <td class="tipo">${f.tipo}</td>
+        <td>${f.concepto}</td>
+        <td class="costo">${f.costo}</td>
+      </tr>`).join('');
+    // Cargar totales
+    costosTotales.innerHTML = data.totales.map(t => `
+      <div class="total-row ${t.clase}">
+        <span class="lbl">${t.lbl}</span>
+        <span class="val">${t.val}</span>
+      </div>`).join('');
+    detallePlaceholder.hidden = true;
+    detalleTable.hidden = false;
+  } else {
+    detallePlaceholder.hidden = false;
+    detalleTable.hidden = true;
+  }
   detalleProduct.textContent = product;
   navigate('detalle');
 }
@@ -354,7 +487,7 @@ document.addEventListener('click', e=>{
   if(nav) navigate(nav.dataset.go);
 
   const prod = e.target.closest('[data-product]');
-  if(prod) openDetalle(prod.dataset.product);
+  if(prod) renderDetalle(prod.dataset.product);
 
   const pick = e.target.closest('[data-pick]');
   if(pick) showToast('«' + pick.dataset.pick + '» seleccionado — destino próximamente');
